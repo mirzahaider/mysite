@@ -1,0 +1,18 @@
+<form action="{% url 'members:login' %}" method="post">
+  {% csrf_token %}
+  <div class="form-group">
+    <label for="Email">Email</label>
+    <input type="text" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+  </div>
+
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" name="password" placeholder="Password">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Sign In</button>
+</form>
+
+<a href="{% url 'members:register' %}">
+  <button type="button">New User? Register!</button>
+</a>

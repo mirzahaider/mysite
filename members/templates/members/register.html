@@ -1,0 +1,15 @@
+
+{% if messages %}
+{% for message in messages %}
+<p style="color:red">{{ message }}</p>
+{% endfor %}
+{% endif %}
+
+<h1>Register</h1>
+<form action="{% url 'members:register' %}" method="post">
+  {% csrf_token %}
+
+    {{ form.as_p }}
+
+  <button type="submit" class="btn btn-primary">Register!</button>
+</form>
