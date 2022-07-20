@@ -26,6 +26,3 @@ def vote(request, question_id):
 
 def result(request, question_id):
     return HttpResponse("You're looking at the result of Question %s" % question_id)
-
-
-
