@@ -9,6 +9,9 @@ class Supplier(models.Model):
     phone = models.CharField(max_length=11)
     address = models.CharField(max_length=300)
 
+    def __str__(self):
+        return self.name
+
 
 class Product(models.Model):
     title = models.CharField(max_length=250)
@@ -17,3 +20,5 @@ class Product(models.Model):
     exp_date = models.DateTimeField()
     supplier = models.ForeignKey(Supplier, on_delete=models.SET_NULL, null=True)
 
+    def __str__(self):
+        return self.title
