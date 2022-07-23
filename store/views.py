@@ -17,8 +17,9 @@ def product_list(request):
     return Response(serializer.data)
 
 
-@api_view()
+@api_view(['GET', 'POST'])
 def product_detail(request, product_id):
-    product = get_object_or_404(Product, id=product_id)
-    serializer = ProductSerializer(product)
-    return Response(serializer.data)
+    if request.method == 'GET':
+        product = get_object_or_404(Product, id=product_id)
+        serializer = ProductSerializer(product)
+        return Response(serializer.data)

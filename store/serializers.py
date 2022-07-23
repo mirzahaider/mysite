@@ -1,6 +1,12 @@
 from rest_framework import serializers
-from store.models import Product
+from store.models import Product, Supplier
 import datetime
+
+
+class SupplierSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Supplier
+        fields = ['id', 'name', 'email', 'address']
 
 
 class ProductSerializer(serializers.Serializer):
@@ -8,6 +14,7 @@ class ProductSerializer(serializers.Serializer):
     title = serializers.CharField(max_length=250)
     unit_price = serializers.DecimalField(max_digits=7, decimal_places=2)
     time_in_expiry = serializers.SerializerMethodField(method_name='calculate_time_in_expiry')
+    supplier = SupplierSerializer()
 
     def calculate_time_in_expiry(self, product: Product):
         rem = product.exp_date - datetime.datetime.now().replace(tzinfo=datetime.timezone.utc)
